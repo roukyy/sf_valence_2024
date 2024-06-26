@@ -10,7 +10,7 @@ table {
         padding: 1em 0;
 
         .cell-flex {
-            @include flex($justify: space-around);
+            @include flex($justify: center, $align: center, $gap: 1em);
         }
     }
 }

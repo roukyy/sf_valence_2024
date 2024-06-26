@@ -24,11 +24,11 @@
 						<td>{{ categorie.id }}</td>
 						<td>{{ categorie.name }}</td>
 						<td>{{ categorie.enable ? 'Actif' : 'Inactif' }}</td>
-						<td>{{ categorie.createdAt|date('Y/m/d') }}</td>
-						<td>{{ categorie.updatedAt|date('Y/m/d') }}</td>
+						<td>{{ categorie.createdAt|date('Y/m/d H:i:s') }}</td>
+						<td>{{ categorie.updatedAt|date('Y/m/d H:i:s') }}</td>
 						<td>
 							<div class="cell-flex">
-								<a href="{{ path('admin.categories.update', {id: categorie.id}) }}">Modifier</a>
+								<a class="btn btn-warning" href="{{ path('admin.categories.update', {id: categorie.id}) }}">Modifier</a>
 								{% include 'Backend/Categorie/_form.html.twig' %}
 							</div>
 						</td>
