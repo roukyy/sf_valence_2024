@@ -32,11 +32,11 @@ $place: (
 @each $key, $value in $place {
     @for $i from 1 through 5 {
         .m#{$value}-#{$i} {
-            margin-#{$key}: #{$i * 0.5}em;
+            margin-#{$key}: #{$i * 0.25}em;
         }
 
         .p#{$value}-#{$i} {
-            padding-#{$key}: #{$i * 0.5}em;
+            padding-#{$key}: #{$i * 0.25}em;
         }
     }
 }
