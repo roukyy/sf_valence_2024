@@ -1,13 +1,13 @@
 @function getTextColor($bgColor, $darken: false) {
     @if (lightness($bgColor) > 50) {
         @if $darken {
-            @return lighten($text-color, 20%);
+            @return lighten($text-color, 15%);
         } @else {
             @return $text-color;
         }
     } @else {
         @if $darken {
-            @return darken($white, 20%);
+            @return darken($white, 15%);
         } @else {
             @return $white;
         }
