@@ -7,6 +7,7 @@
 {% block body %}
 	<section class="container mt-2">
 		<h1 class="text-center">Administration des catégories</h1>
+		<a href="{{ path('admin.categories.create') }}" class="btn btn-primary">Créer une catégorie</a>
 		<table class="mt-4">
 			<thead>
 				<tr>
@@ -29,7 +30,7 @@
 						<td>
 							<div class="cell-flex">
 								<a class="btn btn-warning" href="{{ path('admin.categories.update', {id: categorie.id}) }}">Modifier</a>
-								{% include 'Backend/Categorie/_form.html.twig' %}
+								{% include 'Backend/Categorie/_deleteForm.html.twig' %}
 							</div>
 						</td>
 					</tr>
