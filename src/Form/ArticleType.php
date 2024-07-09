@@ -4,6 +4,8 @@ namespace App\Form;
 
 use App\Entity\Article;
 use App\Entity\Categorie;
+use App\Repository\CategorieRepository;
+use Doctrine\ORM\QueryBuilder;
 use Symfony\Bridge\Doctrine\Form\Type\EntityType;
 use Symfony\Component\Form\AbstractType;
 use Symfony\Component\Form\Extension\Core\Type\CheckboxType;
@@ -30,6 +32,11 @@ class ArticleType extends AbstractType
                 'expanded' => false,
                 'multiple' => true,
                 'autocomplete' => true,
+                'query_builder' => function (CategorieRepository $repo): QueryBuilder {
+                    return $repo->createQueryBuilder('c')
+                        ->andWhere('c.enable = true')
+                        ->orderBy('c.name', 'ASC');
+                },
             ])
             ->add('content', TextareaType::class, [
                 'label' => 'Contenu',
