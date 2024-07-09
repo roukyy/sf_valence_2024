@@ -5,6 +5,8 @@ namespace App\Entity;
 use App\Entity\Traits\DateTimeTrait;
 use App\Entity\Traits\EnableTrait;
 use App\Repository\ArticleRepository;
+use Doctrine\Common\Collections\ArrayCollection;
+use Doctrine\Common\Collections\Collection;
 use Doctrine\DBAL\Types\Types;
 use Doctrine\ORM\Mapping as ORM;
 use Symfony\Bridge\Doctrine\Validator\Constraints\UniqueEntity;
@@ -34,6 +36,21 @@ class Article
     #[Assert\Length(max: 10000)]
     private ?string $content = null;
 
+    #[ORM\ManyToOne(inversedBy: 'articles')]
+    #[ORM\JoinColumn(nullable: false)]
+    private ?User $user = null;
+
+    /**
+     * @var Collection<int, Categorie>
+     */
+    #[ORM\ManyToMany(targetEntity: Categorie::class, inversedBy: 'articles')]
+    private Collection $categories;
+
+    public function __construct()
+    {
+        $this->categories = new ArrayCollection();
+    }
+
     public function getId(): ?int
     {
         return $this->id;
@@ -59,6 +76,42 @@ class Article
     public function setContent(string $content): static
     {
         $this->content = $content;
+
+        return $this;
+    }
+
+    public function getUser(): ?User
+    {
+        return $this->user;
+    }
+
+    public function setUser(?User $user): static
+    {
+        $this->user = $user;
+
+        return $this;
+    }
+
+    /**
+     * @return Collection<int, Categorie>
+     */
+    public function getCategories(): Collection
+    {
+        return $this->categories;
+    }
+
+    public function addCategory(Categorie $category): static
+    {
+        if (!$this->categories->contains($category)) {
+            $this->categories->add($category);
+        }
+
+        return $this;
+    }
+
+    public function removeCategory(Categorie $category): static
+    {
+        $this->categories->removeElement($category);
 
         return $this;
     }
