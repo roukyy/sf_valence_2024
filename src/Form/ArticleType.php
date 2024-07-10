@@ -51,6 +51,8 @@ class ArticleType extends AbstractType
                 'required' => false,
                 'allow_delete' => true,
                 'delete_label' => 'Supprimer l\'image actuelle',
+                'download_uri' => false,
+                'download_label' => false,
                 'image_uri' => true,
                 'asset_helper' => true,
             ])
