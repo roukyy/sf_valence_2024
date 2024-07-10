@@ -1,0 +1,34 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}
+	Administration des articles
+	{{ parent() }}
+{% endblock %}
+
+{% block body %}
+	<section class="container mt-2">
+		<h1 class="text-center">Administration des articles</h1>
+		<a href="{{ path('admin.articles.create') }}" class="btn btn-primary mt-2">Créer un article</a>
+		<div class="row mt-2 gy-4">
+			{% for article in articles %}
+				<div class="col-md-4">
+					<div class="card">
+						<h4>{{ article.title }}</h4>
+						<em>{{ article.createdAt|format_datetime('full', 'none') }}</em>
+						<p>{{ article.user.fullName }}</p>
+						<p>{{ article.content|length > 150 ? article.content|slice(0, 150) ~  '...' : article.content }}</p>
+						<p>
+							{% for categorie in article.categories %}
+								#{{ categorie.name }}
+							{% endfor %}
+						</p>
+						<div class="card-btn">
+							<a href="{{ path('admin.articles.update', {id: article.id}) }}" class="btn btn-warning">Modifier</a>
+							{% include 'Backend/Article/_deleteForm.html.twig' %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</section>
+{% endblock %}
