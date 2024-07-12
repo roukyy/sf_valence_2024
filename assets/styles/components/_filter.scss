@@ -1,0 +1,12 @@
+.filter-article-form{
+    position: sticky;
+    top: 6em;
+
+    &-check-list{
+        @include flex(flex-start, center, $gap: 0.5em);
+    }
+
+    button{
+        width: 100%;
+    }
+}
