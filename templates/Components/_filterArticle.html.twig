@@ -1,0 +1,13 @@
+{{ form_start(form, {attr: {class: 'card filter-article-form'}}) }}
+{{ form_row(form.query) }}
+
+<h2>Catégories</h2>
+{{ form_row(form.categories, {attr: {class: 'filter-article-form-check-list'}}) }}
+
+<a href="{{ path('app.articles.index') }}" class="btn btn-secondary mt-2">Reset</a>
+
+<h2>Auteurs</h2>
+{{ form_row(form.authors) }}
+
+<button type="submit" class="btn btn-primary">Filtrer</button>
+{{ form_end(form) }}
